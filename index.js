@@ -35,26 +35,33 @@ var questionsArray = [
   },
 ];
 
-
-// step1
-//remove le keydown
-//afficher la question courante
-//ecouter les listenners bouttons
-
-function showQuestion() {
+function displayQuestion() {
   questionText.innerText = questionsArray[counter].question;
   flowerImg.src = questionsArray[counter].flowerImage;
   welcomeMsg.innerText = questionsArray[counter].flowerAnswer;
-  console.log(counter);
 
   for (let i = 0; i < questionsArray[counter].answer.length; i++) {
     buttons[i].innerText = questionsArray[counter].answer[i];
   }
-  if (counter === questionsArray.length - 1) return setupRunningGame();
+}
 
-  buttons.forEach((button) =>
-    button.addEventListener("click", () => showQuestion(counter++))
+function listenStep1Buttons() {
+  buttons.forEach(
+    (btn) =>
+      (btn.onclick = () => {
+        counter++;
+        if (counter < questionsArray.length) displayQuestion();
+        else {
+          setupRunningGame();
+        }
+      })
   );
+}
+
+function doStep1() {
+  counter = 0;
+  displayQuestion();
+  listenStep1Buttons();
 }
 
 function setupRunningGame() {
@@ -62,17 +69,19 @@ function setupRunningGame() {
   questionsAnswerBlock.style.visibility = "hidden";
   divHidden.innerHTML = "Run while you can...";
   welcomeMsg.innerText = "GOT YOU !";
-  //hide border question
-  //showw the message run while you can
+
   //adapt the background
   //lauch the music !
 }
 
+function startStep1() {
+  questionsAnswerBlock.style.visibility = "visible";
+  sentenceToLoad.innerHTML = "";
+  doStep1();
+  document.removeEventListener("keydown", startStep1);
+}
+
 document.onload = setTimeout(function () {
   sentenceToLoad.style.visibility = "visible";
-  document.addEventListener("keydown", function () {
-    questionsAnswerBlock.style.visibility = "visible";
-    sentenceToLoad.innerHTML = "";
-    showQuestion(0);
-  });
+  document.addEventListener("keydown", startStep1);
 }, 1500);
