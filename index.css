@@ -20,7 +20,7 @@
     justify-content: space-around;
     height: 350px;
     padding: 20px;
-    margin: 70px 10px;
+    margin: 30px 10px;
     border: 4px solid black;
 }
 
@@ -37,6 +37,8 @@
     height: 25%;
     width: 100%;
     border: 1px solid black;
+    outline: none;
+
 }
 
 
@@ -48,7 +50,8 @@
 #sentenceToLoad,
 #questionDiv,
 #QAContainer,
-.littlechildrenDiv {
+.littlechildrenDiv,
+#hiddenMsg {
     font-family: myFont;
 }
 
@@ -58,10 +61,9 @@
 }
 
 #hiddenMsg {
-    text-align: center;
-    position: relative;
-    top: 100px;
-    font-family: myFont;
+    display: flex;
+    justify-content: center;
+    padding-top: 0px;
     font-size: 60px;
     animation: shake 0.5s;
     animation-iteration-count: infinite;
@@ -75,7 +77,7 @@
 }
 
 img {
-    max-width: 7%;
+    max-width: 20%;
     height: auto;
 }
 
