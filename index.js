@@ -4,56 +4,34 @@ const floweyImg = document.getElementById("floweyImg");
 const welcomeMsg = document.getElementById("welcomeMessage");
 const sentenceToLoad = document.getElementById("sentenceToLoad");
 const questionsAnswerBlock = document.getElementById("QAContainer");
-const questions = document.getElementById("questionDiv");
-const answer = document.getElementById("childrenDiv");
+const questionText = document.getElementById("questionDiv");
+const answerText = document.getElementById("childrenDiv");
 let buttons = document.querySelectorAll(".littlechildrenDiv");
+let counter = 0;
 
 document.getElementById("message").innerHTML = "Hey, look at this treasure ! Click on it :D";
 
-var questionsObject = {
-    question: "test1",
-    answers: [{
-            text: "bon"
-        },
-        {
-            text: "mauvais"
-        },
-        {
-            text: "mauvais"
-        },
-        {
-            text: "mauvais"
-        }
-    ],
-    question: "test2",
-    answers: [{
-            text: "bonnn"
-        },
-        {
-            text: "mauvaissss"
-        },
-        {
-            text: "mauvaisss"
-        },
-        {
-            text: "mauvaisss"
-        }
-    ]
-};
+var questionsArray = [
 
-function showQuestion(question) {
-    questions.innerText = question.question;
-    for (let i = 0; i < question.answers.length; i++) {
-        buttons[i].innerText = question.answers[i].text;
-        buttons[i].addEventListener("click", selectAnswer);
+    {
+        question: "question 1",
+        answer: ["rep1", "rep2", "rep3", "rep4"]
+    },
+    {
+        question: "question 2",
+        answer: ["rep11", "rep22", "rep33", "rep44"]
     }
-}
+];
 
-function selectAnswer(e) {
-    const selectedButton = e.target;
-    console.log(selectedButton);
-    // welcomeMsg.innerText = "oh nice";
+function showQuestion(index) {
+    questionText.innerText = questionsArray[index].question;
 
+    for (let i = 0; i < questionsArray[index].answer.length; i++) {
+        buttons[i].innerText = questionsArray[index].answer[i];
+    }
+
+    counter++;
+    buttons.forEach((button) => button.addEventListener("click", () => showQuestion(counter)));
 }
 
 clickBtn.addEventListener("click", function () {
@@ -68,7 +46,6 @@ document.onload = setTimeout(function () {
     document.addEventListener("keydown", function () {
         questionsAnswerBlock.style.visibility = "visible";
         sentenceToLoad.innerHTML = "";
-        showQuestion(questionsObject);
-
+        showQuestion(0);
     });
 }, 1500);
