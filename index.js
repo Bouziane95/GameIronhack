@@ -7,7 +7,8 @@ const answerText = document.getElementById("children-div");
 const flowerImg = document.getElementById("flowey-img");
 let buttons = document.querySelectorAll(".little-children-div");
 let counter = 0;
-var audio = new Audio("./musics/megalovania.mp3");
+const audio = new Audio("./musics/megalovania.mp3");
+const defeatAudio = new Audio("./musics/gameOver.mp3");
 let rainAnimation = document.getElementById("rain-video");
 let groundLine = document.getElementById("lvl-line");
 let score = document.getElementById("score");
@@ -17,7 +18,11 @@ const asgorr = document.getElementById("asgorr");
 const papyrus = document.getElementById("papyrus");
 const sans = document.getElementById("sans");
 const flowey = document.getElementById("flowey");
-const gameLost = document.getElementById("game-over");
+const gameLost = document.getElementById("game-restart");
+const yesContinue = document.getElementById("yes-continue");
+const noContinue = document.getElementById("no-continue");
+const gameOverMsg = document.getElementById("game-over");
+const restartMsg = document.getElementById("restart");
 
 var questionsArray = [
   {
@@ -121,6 +126,24 @@ function mouseOnMonsters() {
 function gameIsLost() {
   hp.style.visibility = "hidden";
   gameLost.style.visibility = "visible";
+  audio.pause();
+  defeatAudio.play();
+  yesContinue.addEventListener("click", continueGame);
+  noContinue.addEventListener("click", noContinueGame);
+}
+
+function noContinueGame() {
+  gameOverMsg.innerText = "GAME OVER";
+  yesContinue.style.visibility = "hidden";
+  noContinue.style.visibility = "hidden";
+  restartMsg.innerText = "The monsters have caught your soul !";
+}
+
+function continueGame() {
+  console.log("i'm here");
+  hp.appendChild(oneHeart);
+  hp.appendChild(oneHeart);
+  doStep2();
 }
 
 function prepareRunningGame() {

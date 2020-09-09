@@ -4,12 +4,33 @@
     padding: 0px;
 }
 
-#game-over {
-    position: fixed;
-    top: 30%;
-    left: 38%;
-    font-size: 90px;
+#choice button {
+    font-family: myFont;
+    font-size: 25px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+#choice {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#restart {
+    font-size: 30px;
+}
+
+#game-restart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
     visibility: hidden;
+}
+
+#game-over {
+    font-size: 90px;
     animation: shake 0.5s;
     animation-iteration-count: infinite;
 }
@@ -134,7 +155,8 @@
 #hidden-msg,
 #score,
 #heart,
-#game-over {
+#game-over,
+#restart {
     font-family: myFont;
 }
 
