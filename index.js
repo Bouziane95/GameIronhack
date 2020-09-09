@@ -28,6 +28,7 @@ var secondsLabel = document.getElementById("seconds");
 var totalSeconds = 0;
 var timer = setInterval(setTime, 1000);
 var countHP = 3;
+var pauseTimer = false;
 
 var questionsArray = [
   {
@@ -102,9 +103,14 @@ function setupRunningGame() {
 }
 
 function setTime() {
-  ++totalSeconds;
-  secondsLabel.innerText = pad(totalSeconds % 60);
-  minutesLabel.innerText = pad(parseInt(totalSeconds / 60));
+  if (!pauseTimer) {
+    ++totalSeconds;
+    secondsLabel.innerText = pad(totalSeconds % 60);
+    minutesLabel.innerText = pad(parseInt(totalSeconds / 60));
+  } else {
+    secondsLabel.innerText = pad(totalSeconds % 60);
+    minutesLabel.innerText = pad(parseInt(totalSeconds / 60));
+  }
 }
 
 function pad(val) {
@@ -122,6 +128,8 @@ function makeEnvironnement() {
   hp.style.visibility = "visible";
   appearMonsters();
   totalSeconds = 0;
+  secondsLabel.innerText = "00";
+  minutesLabel.innerText = "00";
   timer;
   asgorr.addEventListener("mouseover", mouseOnMonsters);
   sans.addEventListener("mouseover", mouseOnMonsters);
@@ -137,12 +145,10 @@ function appearMonsters() {
 }
 
 function mouseOnMonsters() {
-  console.log("ouch");
   countHP--;
-  console.log(countHP);
   if (countHP === 0) {
     hp.removeChild(hp.lastElementChild);
-    clearInterval(timer);
+    pauseTimer = true;
     gameIsLost();
   } else {
     hp.removeChild(hp.lastElementChild);
@@ -173,6 +179,7 @@ function noContinueGame() {
 }
 
 function continueGame() {
+  pauseTimer = false;
   gameLost.style.visibility = "hidden";
   makeEnvironnement();
 
