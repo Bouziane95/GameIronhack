@@ -4,6 +4,59 @@
     padding: 0px;
 }
 
+
+
+
+
+/* #hero-ground {
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+#hero {
+    position: fixed;
+    width: 140px;
+    height: 210px;
+    bottom: 64.5px;
+    background: url(./images/hero.png) left center;
+    /* animation: play .8s steps(10) infinite; */
+}
+
+/* @keyframes play {
+    100% {
+        background-position: -1900px;
+    }
+} */
+
+/* #lvl-line {
+    position: fixed;
+    width: 100%;
+    border: 4px solid grey;
+    bottom: 60px;
+}  */
+
+#Rain-Video {
+    visibility: hidden;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.Background-Animation {
+    animation: back-change 2s;
+    /* remettre a 7 */
+}
+
+#Score {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    visibility: hidden;
+}
+
 #QAContainer {
     text-align: center;
     padding-top: 10px;
@@ -51,7 +104,8 @@
 #questionDiv,
 #QAContainer,
 .littlechildrenDiv,
-#hiddenMsg {
+#hiddenMsg,
+#Score {
     font-family: myFont;
 }
 
@@ -84,6 +138,16 @@ img {
 #container {
     visibility: hidden;
     text-align: center;
+}
+
+@keyframes back-change {
+    from {
+        background-color: white;
+    }
+
+    to {
+        background-color: black;
+    }
 }
 
 @font-face {
