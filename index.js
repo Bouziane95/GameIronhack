@@ -23,6 +23,11 @@ const yesContinue = document.getElementById("yes-continue");
 const noContinue = document.getElementById("no-continue");
 const gameOverMsg = document.getElementById("game-over");
 const restartMsg = document.getElementById("restart");
+var minutesLabel = document.getElementById("minutes");
+var secondsLabel = document.getElementById("seconds");
+var totalSeconds = 0;
+var timer = setInterval(setTime, 1000);
+var countHP = 3;
 
 var questionsArray = [
   {
@@ -86,7 +91,6 @@ function doStep2() {
 
 function setupRunningGame() {
   questionsAnswerBlock.remove();
-  divHidden.innerHTML = "Run while you can...";
   welcomeMsg.innerText = "GOT YOU !";
   setTimeout(prepareRunningGame, 2000);
   //setTimeout(rainAudioBackground, 9000);
@@ -94,12 +98,31 @@ function setupRunningGame() {
   setTimeout(makeEnvironnement, 2000);
   //settimeout makeenvironnement 8980
   //settimeout la fonction pour les ennemys
+  divHidden.innerHTML = "Run while you can...";
+}
+
+function setTime() {
+  ++totalSeconds;
+  secondsLabel.innerText = pad(totalSeconds % 60);
+  minutesLabel.innerText = pad(parseInt(totalSeconds / 60));
+}
+
+function pad(val) {
+  var valString = val + "";
+  if (valString.length < 2) {
+    return "0" + valString;
+  } else {
+    return valString;
+  }
 }
 
 function makeEnvironnement() {
+  countHP = 3;
   score.style.visibility = "visible";
   hp.style.visibility = "visible";
   appearMonsters();
+  totalSeconds = 0;
+  timer;
   asgorr.addEventListener("mouseover", mouseOnMonsters);
   sans.addEventListener("mouseover", mouseOnMonsters);
   papyrus.addEventListener("mouseover", mouseOnMonsters);
@@ -115,8 +138,11 @@ function appearMonsters() {
 
 function mouseOnMonsters() {
   console.log("ouch");
-  var countHP = hp.childElementCount - 1;
+  countHP--;
+  console.log(countHP);
   if (countHP === 0) {
+    hp.removeChild(hp.lastElementChild);
+    clearInterval(timer);
     gameIsLost();
   } else {
     hp.removeChild(hp.lastElementChild);
@@ -124,12 +150,19 @@ function mouseOnMonsters() {
 }
 
 function gameIsLost() {
-  hp.style.visibility = "hidden";
   gameLost.style.visibility = "visible";
   audio.pause();
-  defeatAudio.play();
+  //defeatAudio.play();
+  removeListenerMonster();
   yesContinue.addEventListener("click", continueGame);
   noContinue.addEventListener("click", noContinueGame);
+}
+
+function removeListenerMonster() {
+  asgorr.removeEventListener("mouseover", mouseOnMonsters);
+  sans.removeEventListener("mouseover", mouseOnMonsters);
+  papyrus.removeEventListener("mouseover", mouseOnMonsters);
+  flowey.removeEventListener("mouseover", mouseOnMonsters);
 }
 
 function noContinueGame() {
@@ -140,10 +173,17 @@ function noContinueGame() {
 }
 
 function continueGame() {
-  console.log("i'm here");
-  hp.appendChild(oneHeart);
-  hp.appendChild(oneHeart);
-  doStep2();
+  gameLost.style.visibility = "hidden";
+  makeEnvironnement();
+
+  var countheart = 3;
+  for (let i = 0; i < countheart; i++) {
+    console.log("here");
+    let heart = document.createElement("img");
+    heart.id = "one-heart";
+    heart.src = "./images/heart.jpg";
+    hp.appendChild(heart);
+  }
 }
 
 function prepareRunningGame() {
