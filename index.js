@@ -55,14 +55,6 @@ var questionsArray = [
     flowerAnswer: "You look so tasty...",
   },
 ];
-// document.addEventListener(
-//   "click",
-//   function (ev) {
-//     console.log("ttt");
-
-//   },
-//   false
-// );
 
 function displayQuestion() {
   questionText.innerText = questionsArray[counter].question;

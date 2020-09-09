@@ -4,6 +4,11 @@
     padding: 0px;
 }
 
+body {
+    cursor: url("./images/blueHeart.png"), auto;
+}
+
+
 #choice button {
     font-family: myFont;
     font-size: 25px;
