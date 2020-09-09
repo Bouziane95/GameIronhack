@@ -55,6 +55,14 @@ var questionsArray = [
     flowerAnswer: "You look so tasty...",
   },
 ];
+// document.addEventListener(
+//   "click",
+//   function (ev) {
+//     console.log("ttt");
+
+//   },
+//   false
+// );
 
 function displayQuestion() {
   questionText.innerText = questionsArray[counter].question;
@@ -127,6 +135,7 @@ function makeEnvironnement() {
   score.style.visibility = "visible";
   hp.style.visibility = "visible";
   appearMonsters();
+  monstersMoving();
   totalSeconds = 0;
   secondsLabel.innerText = "00";
   minutesLabel.innerText = "00";
@@ -142,6 +151,33 @@ function appearMonsters() {
   sans.style.visibility = "visible";
   papyrus.style.visibility = "visible";
   flowey.style.visibility = "visible";
+}
+
+function monstersMoving() {
+  papyrusMove();
+  asgorrMove();
+  sansMove();
+  floweyMove();
+}
+
+function papyrusMove() {
+  papyrus.style.transform = "translateY(85px)";
+  papyrus.style.transform = "translateX(85px)";
+}
+
+function asgorrMove() {
+  asgorr.style.transform = "translateY(85px)";
+  asgorr.style.transform = "translateX(85px)";
+}
+
+function sansMove() {
+  sans.style.transform = "translateY(85px)";
+  sans.style.transform = "translateX(85px)";
+}
+
+function floweyMove() {
+  flowey.style.transform = "translateY(85px)";
+  flowey.style.transform = "translateX(85px)";
 }
 
 function mouseOnMonsters() {
