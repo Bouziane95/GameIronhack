@@ -4,39 +4,65 @@
     padding: 0px;
 }
 
-
-
-
-
-/* #hero-ground {
+#game-over {
+    position: fixed;
+    top: 30%;
+    left: 38%;
+    font-size: 90px;
     visibility: hidden;
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+}
+
+#papyrus {
+    position: fixed;
+    top: 70%;
+    left: 50px;
+    z-index: -1;
+    visibility: hidden;
+}
+
+#flowey {
+    position: fixed;
+    top: 30%;
+    left: 50px;
+    z-index: -1;
+    visibility: hidden;
+}
+
+#sans {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    visibility: hidden;
+}
+
+#asgorr {
+    position: fixed;
+    top: 30%;
+    left: 80%;
+    z-index: -1;
+    visibility: hidden;
+}
+
+
+
+#hp {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
 }
 
-#hero {
+#heart {
     position: fixed;
-    width: 140px;
-    height: 210px;
-    bottom: 64.5px;
-    background: url(./images/hero.png) left center;
-    /* animation: play .8s steps(10) infinite; */
+    left: 10px;
+    top: 40px;
+    width: 80px;
+    height: 80px;
+    visibility: hidden;
 }
 
-/* @keyframes play {
-    100% {
-        background-position: -1900px;
-    }
-} */
-
-/* #lvl-line {
-    position: fixed;
-    width: 100%;
-    border: 4px solid grey;
-    bottom: 60px;
-}  */
-
-#Rain-Video {
+#rain-video {
     visibility: hidden;
     position: fixed;
     right: 0;
@@ -45,29 +71,30 @@
     min-height: 100%;
 }
 
-.Background-Animation {
+.background-animation {
     animation: back-change 2s;
+    background-color: black;
     /* remettre a 7 */
 }
 
-#Score {
+#score {
     position: fixed;
     top: 10px;
     left: 10px;
     visibility: hidden;
 }
 
-#QAContainer {
+#qa-container {
     text-align: center;
     padding-top: 10px;
     visibility: hidden;
 }
 
-#QAContainer p {
+#qa-container p {
     animation: zoomInOut 4s infinite;
 }
 
-#parentDiv {
+#parent-div {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -77,14 +104,14 @@
     border: 4px solid black;
 }
 
-.childrenDiv {
+.children-div {
     width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.littlechildrenDiv {
+.little-children-div {
     text-align: center;
     padding: 6%;
     height: 25%;
@@ -95,26 +122,28 @@
 }
 
 
-#floweyImg {
+#flowey-img-div {
     text-align: center;
 }
 
-#welcomeMessage,
-#sentenceToLoad,
-#questionDiv,
-#QAContainer,
-.littlechildrenDiv,
-#hiddenMsg,
-#Score {
+#welcome-message,
+#sentence-to-load,
+#question-div,
+#qa-container,
+.little-children-div,
+#hidden-msg,
+#score,
+#heart,
+#game-over {
     font-family: myFont;
 }
 
-#sentenceToLoad {
+#sentence-to-load {
     visibility: hidden;
     animation: zoomInOut 1s infinite;
 }
 
-#hiddenMsg {
+#hidden-msg {
     display: flex;
     justify-content: center;
     padding-top: 0px;

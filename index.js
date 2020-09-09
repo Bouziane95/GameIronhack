@@ -1,19 +1,23 @@
-const divHidden = document.getElementById("hiddenMsg");
-const welcomeMsg = document.getElementById("welcomeMessage");
-const sentenceToLoad = document.getElementById("sentenceToLoad");
-const questionsAnswerBlock = document.getElementById("QAContainer");
-const questionText = document.getElementById("questionDiv");
-const answerText = document.getElementById("childrenDiv");
-const flowerImg = document.getElementById("FloweyImg");
-let buttons = document.querySelectorAll(".littlechildrenDiv");
+const divHidden = document.getElementById("hidden-msg");
+const welcomeMsg = document.getElementById("welcome-message");
+const sentenceToLoad = document.getElementById("sentence-to-load");
+const questionsAnswerBlock = document.getElementById("qa-container");
+const questionText = document.getElementById("question-div");
+const answerText = document.getElementById("children-div");
+const flowerImg = document.getElementById("flowey-img");
+let buttons = document.querySelectorAll(".little-children-div");
 let counter = 0;
 var audio = new Audio("./musics/megalovania.mp3");
-let rainAnimation = document.getElementById("Rain-Video");
+let rainAnimation = document.getElementById("rain-video");
 let groundLine = document.getElementById("lvl-line");
-let heroGround = document.getElementById("hero-ground");
-let hero = document.getElementById("hero");
-let score = document.getElementById("Score");
-var posX = hero.getBoundingClientRect().right;
+let score = document.getElementById("score");
+let hp = document.getElementById("heart");
+let oneHeart = document.getElementById("one-heart");
+const asgorr = document.getElementById("asgorr");
+const papyrus = document.getElementById("papyrus");
+const sans = document.getElementById("sans");
+const flowey = document.getElementById("flowey");
+const gameLost = document.getElementById("game-over");
 
 var questionsArray = [
   {
@@ -88,62 +92,35 @@ function setupRunningGame() {
 }
 
 function makeEnvironnement() {
-  heroGround.style.visibility = "visible";
   score.style.visibility = "visible";
-  document.addEventListener("keydown", heroAction);
+  hp.style.visibility = "visible";
+  appearMonsters();
+  asgorr.addEventListener("mouseover", mouseOnMonsters);
+  sans.addEventListener("mouseover", mouseOnMonsters);
+  papyrus.addEventListener("mouseover", mouseOnMonsters);
+  flowey.addEventListener("mouseover", mouseOnMonsters);
 }
 
 function appearMonsters() {
-  //Faire apparaitre les monstres
+  asgorr.style.visibility = "visible";
+  sans.style.visibility = "visible";
+  papyrus.style.visibility = "visible";
+  flowey.style.visibility = "visible";
 }
 
-function heroAction(evt) {
-
-  if (evt.code == "Space") {
-    heroJump();
-  } else if (evt.code == "ArrowRight") {
-    heroRight();
-  } else if (evt.code == "ArrowLeft") {
-    heroLeft();
+function mouseOnMonsters() {
+  console.log("ouch");
+  var countHP = hp.childElementCount - 1;
+  if (countHP === 0) {
+    gameIsLost();
+  } else {
+    hp.removeChild(hp.lastElementChild);
   }
 }
 
-function heroJump() {
-  hero.style.background = "url(./images/hero.png)";
-  var posY = 60;
-  var isAscending = true;
-  var id = setInterval(frame, 1);
-
-  function frame() {
-    if (isAscending && posY >= 260) {
-      isAscending = false;
-    } else {
-      if (isAscending) posY += 2;
-      else posY -= 2;
-      hero.style.bottom = posY + "px";
-      if (!isAscending && posY === 60) clearInterval(id);
-    }
-  }
-}
-
-function heroRight() {
-  hero.style.background = "url(./images/rightHero.jpg)";
-  console.log(document.body.offsetWidth);
-  console.log(posX);
-  if (posX === document.body.offsetWidth) return;
-  posX += 20;
-  hero.style.left = posX + "px";
-  hero.style.bottom = 60 + "px";
-}
-
-function heroLeft() {
-  hero.style.background = "url(./images/leftHero.jpg)";
-  console.log(pos);
-  console.log(document.body.offsetWidth);
-  if (pos === document.body.offsetWidth - hero.offsetWidth) return;
-  pos += 20;
-  hero.style.right = pos + "px";
-  hero.style.bottom = 60 + "px";
+function gameIsLost() {
+  hp.style.visibility = "hidden";
+  gameLost.style.visibility = "visible";
 }
 
 function prepareRunningGame() {
