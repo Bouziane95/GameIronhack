@@ -1,35 +1,42 @@
+//Monsters-Score-HP
+const asgorr = document.getElementById("asgorr");
+const papyrus = document.getElementById("papyrus");
+const sans = document.getElementById("sans");
+const flowey = document.getElementById("flowey");
+const flowerImg = document.getElementById("flowey-img");
+let score = document.getElementById("score");
+let hp = document.getElementById("heart");
+let oneHeart = document.getElementById("one-heart");
+var minutesLabel = document.getElementById("minutes");
+var secondsLabel = document.getElementById("seconds");
+var totalSeconds = 0;
+var timer = setInterval(setTime, 1000);
+var countHP = 4;
+var pauseTimer = false;
+
+//Music
+const audio = new Audio("./musics/megalovania.mp3");
+const defeatAudio = new Audio("./musics/gameOver.mp3");
+
+//Game Over - Continue Screen
+const gameLost = document.getElementById("game-restart");
+const yesContinue = document.getElementById("yes-continue");
+const noContinue = document.getElementById("no-continue");
+const gameOverMsg = document.getElementById("game-over");
+const restartMsg = document.getElementById("restart");
+const loadingScreenSentence = document.getElementById(
+  "loading-screen-sentence"
+);
+
+//Quizz part
 const divHidden = document.getElementById("hidden-msg");
 const welcomeMsg = document.getElementById("welcome-message");
 const sentenceToLoad = document.getElementById("sentence-to-load");
 const questionsAnswerBlock = document.getElementById("qa-container");
 const questionText = document.getElementById("question-div");
 const answerText = document.getElementById("children-div");
-const flowerImg = document.getElementById("flowey-img");
 let buttons = document.querySelectorAll(".little-children-div");
 let counter = 0;
-const audio = new Audio("./musics/megalovania.mp3");
-const defeatAudio = new Audio("./musics/gameOver.mp3");
-let rainAnimation = document.getElementById("rain-video");
-let groundLine = document.getElementById("lvl-line");
-let score = document.getElementById("score");
-let hp = document.getElementById("heart");
-let oneHeart = document.getElementById("one-heart");
-const asgorr = document.getElementById("asgorr");
-const papyrus = document.getElementById("papyrus");
-const sans = document.getElementById("sans");
-const flowey = document.getElementById("flowey");
-const gameLost = document.getElementById("game-restart");
-const yesContinue = document.getElementById("yes-continue");
-const noContinue = document.getElementById("no-continue");
-const gameOverMsg = document.getElementById("game-over");
-const restartMsg = document.getElementById("restart");
-var minutesLabel = document.getElementById("minutes");
-var secondsLabel = document.getElementById("seconds");
-var totalSeconds = 0;
-var timer = setInterval(setTime, 1000);
-var countHP = 3;
-var pauseTimer = false;
-
 var questionsArray = [
   {
     question: "What do plant eat ?",
@@ -93,12 +100,10 @@ function doStep2() {
 function setupRunningGame() {
   questionsAnswerBlock.remove();
   welcomeMsg.innerText = "GOT YOU !";
-  setTimeout(prepareRunningGame, 2000);
-  //setTimeout(rainAudioBackground, 9000);
-  //loadingScreenRules();
+  prepareRunningGame();
+  loadingScreenRules();
   setTimeout(makeEnvironnement, 2000);
-  //settimeout makeenvironnement 8980
-  //settimeout la fonction pour les ennemys
+  audioBackground();
   divHidden.innerHTML = "Run while you can...";
 }
 
@@ -122,22 +127,32 @@ function pad(val) {
   }
 }
 
+function loadingScreenRules() {
+  loadingScreenSentence.style.visibility = "visible";
+}
+
 function makeEnvironnement() {
-  countHP = 3;
-  score.style.visibility = "visible";
-  hp.style.visibility = "visible";
+  appearTimer();
   appearMonsters();
-  totalSeconds = 0;
-  secondsLabel.innerText = "00";
-  minutesLabel.innerText = "00";
-  timer;
   asgorr.addEventListener("mouseover", mouseOnMonsters);
   sans.addEventListener("mouseover", mouseOnMonsters);
   papyrus.addEventListener("mouseover", mouseOnMonsters);
   flowey.addEventListener("mouseover", mouseOnMonsters);
 }
 
+function appearTimer() {
+  countHP = 4;
+  score.style.visibility = "visible";
+  hp.style.visibility = "visible";
+  totalSeconds = 0;
+  secondsLabel.innerText = "00";
+  minutesLabel.innerText = "00";
+  timer;
+  divHidden.style.visibility = "hidden";
+}
+
 function appearMonsters() {
+  loadingScreenSentence.style.visibility = "hidden";
   asgorr.style.visibility = "visible";
   sans.style.visibility = "visible";
   papyrus.style.visibility = "visible";
@@ -158,7 +173,7 @@ function mouseOnMonsters() {
 function gameIsLost() {
   gameLost.style.visibility = "visible";
   audio.pause();
-  //defeatAudio.play();
+  defeatAudio.play();
   removeListenerMonster();
   yesContinue.addEventListener("click", continueGame);
   noContinue.addEventListener("click", noContinueGame);
@@ -182,10 +197,10 @@ function continueGame() {
   pauseTimer = false;
   gameLost.style.visibility = "hidden";
   makeEnvironnement();
-
-  var countheart = 3;
+  audioBackground();
+  defeatAudio.pause();
+  var countheart = 4;
   for (let i = 0; i < countheart; i++) {
-    console.log("here");
     let heart = document.createElement("img");
     heart.id = "one-heart";
     heart.src = "./images/heart.jpg";
@@ -195,19 +210,12 @@ function continueGame() {
 
 function prepareRunningGame() {
   flowerImg.remove();
-  divHidden.remove();
-  welcomeMsg.remove();
+  divHidden.style.visibility = "hidden";
+  welcomeMsg.style.visibility = "hidden";
   document.body.classList.add("background-transition");
 }
 
-// function loadingScreenRules() {
-//   //loading image + sentence
-//   divHidden.innerText = "Loading... Nah joke";
-//   //mettre image skeleton
-// }
-
-function rainAudioBackground() {
-  rainAnimation.style.visibility = "visible";
+function audioBackground() {
   audio.play();
 }
 

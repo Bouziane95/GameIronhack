@@ -41,10 +41,9 @@
     position: fixed;
     top: 70%;
     left: 20%;
-    z-index: -1;
+    z-index: 10;
     visibility: hidden;
-    -webkit-animation: PapyrusMove 2s linear infinite;
-
+    -webkit-animation: PapyrusMove 3s alternate infinite;
 }
 
 @-webkit-keyframes PapyrusMove {
@@ -71,9 +70,9 @@
     position: fixed;
     top: 30%;
     left: 50px;
-    z-index: -1;
+    z-index: 10;
     visibility: hidden;
-    -webkit-animation: FloweyMove 2s linear infinite;
+    -webkit-animation: FloweyMove 2.5s linear infinite;
 }
 
 @-webkit-keyframes FloweyMove {
@@ -103,9 +102,9 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    z-index: -1;
+    z-index: 10;
     visibility: hidden;
-    -webkit-animation: SansMove 2s linear infinite;
+    -webkit-animation: SansMove 2.5s linear infinite;
 }
 
 @-webkit-keyframes SansMove {
@@ -136,9 +135,9 @@
     position: fixed;
     top: 30%;
     left: 80%;
-    z-index: -1;
+    z-index: 10;
     visibility: hidden;
-    -webkit-animation: AsgorrMove 2s linear infinite;
+    -webkit-animation: AsgorrMove 2.5s linear infinite;
 }
 
 @-webkit-keyframes AsgorrMove {
@@ -213,8 +212,7 @@
 
 .background-transition {
     background-color: black;
-    transition: background-color 2s;
-    /* remettre a 7 */
+    transition: background-color 1.5s;
 }
 
 #score {
@@ -223,6 +221,7 @@
     top: 10px;
     left: 10px;
     visibility: hidden;
+    z-index: 11;
 }
 
 #qa-container {
@@ -276,8 +275,28 @@
 #score,
 #heart,
 #game-over,
-#restart {
+#restart,
+#loading-screen-sentence {
     font-family: myFont;
+}
+
+#loading-screen-sentence {
+    visibility: hidden;
+    animation: shake 0.5s infinite;
+    color: rgb(0, 0, 139);
+    font-size: 35px;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
 }
 
 #sentence-to-load {
@@ -309,16 +328,6 @@ img {
 #container {
     visibility: hidden;
     text-align: center;
-}
-
-@keyframes back-change {
-    from {
-        background-color: white;
-    }
-
-    to {
-        background-color: black;
-    }
 }
 
 @font-face {
