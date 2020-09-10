@@ -40,24 +40,19 @@ let counter = 0;
 var questionsArray = [
   {
     question: "What do plant eat ?",
-    answer: ["Insects", "Zombies", "Insects", "Humans"],
+    answer: ["Insects", "Zombies", "How a flower can speak ?", "Humans"],
     flowerImage: "./images/Flowey.jpeg",
     flowerAnswer: "",
   },
   {
-    question: "Do i love eating ?",
-    answer: [
-      "Definitly Yes",
-      "What ? Since when a plant can talk ?",
-      "No",
-      "Yeah but not me",
-    ],
+    question: "Am i hungry ?",
+    answer: ["Wait.. What ?", "How can i know ?", "No", "Yes"],
     flowerImage: "./images/AmusedFlowey.png",
     flowerAnswer: "You are perfectly right",
   },
   {
-    question: "Can i have one bite of you ?",
-    answer: ["RUN", "RUN", "RUN", "RUN"],
+    question: "Can i eat you ?",
+    answer: ["RUN !!", "RUN !!", "RUN !!", "RUN !!"],
     flowerImage: "./images/BadFlowey.jpeg",
     flowerAnswer: "You look so tasty...",
   },
