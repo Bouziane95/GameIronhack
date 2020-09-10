@@ -4,6 +4,10 @@
     padding: 0px;
 }
 
+.cursor-img {
+    cursor: url("./images/death.png"), auto;
+}
+
 #choice button {
     color: white;
     font-family: myFont;
@@ -28,7 +32,7 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    visibility: hidden;
+    display: none;
 }
 
 #game-over {

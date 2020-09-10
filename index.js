@@ -102,6 +102,7 @@ function setupRunningGame() {
   welcomeMsg.innerText = "GOT YOU !";
   prepareRunningGame();
   loadingScreenRules();
+  changeCursorDamage();
   setTimeout(makeEnvironnement, 2000);
   audioBackground();
   divHidden.innerHTML = "Run while you can...";
@@ -129,6 +130,10 @@ function pad(val) {
 
 function loadingScreenRules() {
   loadingScreenSentence.style.visibility = "visible";
+}
+
+function changeCursorDamage() {
+  document.body.classList.add("cursor-img");
 }
 
 function makeEnvironnement() {
@@ -171,7 +176,7 @@ function mouseOnMonsters() {
 }
 
 function gameIsLost() {
-  gameLost.style.visibility = "visible";
+  gameLost.style.display = "block";
   audio.pause();
   defeatAudio.play();
   removeListenerMonster();
@@ -195,7 +200,7 @@ function noContinueGame() {
 
 function continueGame() {
   pauseTimer = false;
-  gameLost.style.visibility = "hidden";
+  gameLost.style.display = "none";
   makeEnvironnement();
   audioBackground();
   defeatAudio.pause();
