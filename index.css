@@ -4,12 +4,8 @@
     padding: 0px;
 }
 
-body {
-    cursor: url("./images/blueHeart.png"), auto;
-}
-
-
 #choice button {
+    color: white;
     font-family: myFont;
     font-size: 25px;
     border: none;
@@ -28,6 +24,7 @@ body {
 
 #game-restart {
     display: flex;
+    color: white;
     flex-direction: column;
     justify-content: center;
     text-align: center;
@@ -46,7 +43,28 @@ body {
     left: 20%;
     z-index: -1;
     visibility: hidden;
-    transition: transform 1s;
+    -webkit-animation: PapyrusMove 2s linear infinite;
+
+}
+
+@-webkit-keyframes PapyrusMove {
+    from {
+        left: -300px;
+    }
+
+    50% {
+        left: 100%;
+        top: 20%;
+    }
+
+    80% {
+        top: 30%;
+
+    }
+
+    to {
+        left: -300px;
+    }
 }
 
 #flowey {
@@ -55,7 +73,30 @@ body {
     left: 50px;
     z-index: -1;
     visibility: hidden;
-    transition: transform 1s;
+    -webkit-animation: FloweyMove 2s linear infinite;
+}
+
+@-webkit-keyframes FloweyMove {
+    from {
+        left: -300px;
+    }
+
+    20% {
+        bottom: 80%;
+        top: 90%;
+    }
+
+    50% {
+        left: 100%;
+    }
+
+    80% {
+        top: 0%;
+    }
+
+    to {
+        left: -300px;
+    }
 }
 
 #sans {
@@ -64,7 +105,31 @@ body {
     left: 50%;
     z-index: -1;
     visibility: hidden;
-    transition: transform 1s;
+    -webkit-animation: SansMove 2s linear infinite;
+}
+
+@-webkit-keyframes SansMove {
+    from {
+        top: 0%;
+    }
+
+    20% {
+        left: 60%;
+        top: 100%;
+        left: 50%;
+    }
+
+    50% {
+        left: 80%;
+    }
+
+    80% {
+        left: 10%;
+    }
+
+    to {
+        top: 0%;
+    }
 }
 
 #asgorr {
@@ -73,7 +138,52 @@ body {
     left: 80%;
     z-index: -1;
     visibility: hidden;
-    transition: transform 1s;
+    -webkit-animation: AsgorrMove 2s linear infinite;
+}
+
+@-webkit-keyframes AsgorrMove {
+    from {
+        top: 0%;
+    }
+
+    20% {
+        top: 20%;
+        left: 0%;
+    }
+
+    30% {
+        left: 0%;
+        top: 50%;
+    }
+
+    50% {
+        left: 0%;
+        top: 80%;
+    }
+
+    70% {
+        top: 80%;
+        right: 50%;
+    }
+
+    80% {
+        top: 80%;
+        right: 90%;
+    }
+
+    90% {
+        top: 50%;
+        right: 100%;
+    }
+
+    100% {
+        top: 80%;
+        left: 100%;
+    }
+
+    to {
+        top: 80%;
+    }
 }
 
 
@@ -101,14 +211,15 @@ body {
     min-height: 100%;
 }
 
-.background-animation {
-    animation: back-change 2s;
+.background-transition {
     background-color: black;
+    transition: background-color 2s;
     /* remettre a 7 */
 }
 
 #score {
     position: fixed;
+    color: white;
     top: 10px;
     left: 10px;
     visibility: hidden;
@@ -116,7 +227,7 @@ body {
 
 #qa-container {
     text-align: center;
-    padding-top: 10px;
+    top: 50%;
     visibility: hidden;
 }
 
